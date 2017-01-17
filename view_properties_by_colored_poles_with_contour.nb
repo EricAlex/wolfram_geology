@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       157,          7]
-NotebookDataLength[     19384,        445]
-NotebookOptionsPosition[     19109,        430]
-NotebookOutlinePosition[     19482,        447]
-CellTagsIndexPosition[     19439,        444]
+NotebookDataLength[     21016,        483]
+NotebookOptionsPosition[     20741,        468]
+NotebookOutlinePosition[     21114,        485]
+CellTagsIndexPosition[     21071,        482]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -143,26 +143,31 @@ Cell[BoxData[{
       RowBox[{"[", "1", "]"}], "]"}]}]}], "\[IndentingNewLine]", 
    "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
+  RowBox[{
+  "basePath", "=", 
+   "\"\</Users/ericrussell/Documents/TEST-for-IAMG/clusters/\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"baseName", "=", "\"\<N.O.062-test\>\""}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"data", " ", "=", " ", 
    RowBox[{"Import", "[", 
     RowBox[{
-    "\"\</Users/ericrussell/Documents/figure_in_processing_computer_and_\
-geosciences/cluster_dip_dipdir.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
-   ";"}], "\[IndentingNewLine]", 
+     RowBox[{"basePath", "<>", "baseName", "<>", "\"\<_dip_dipdir.txt\>\""}], 
+     ",", " ", "\"\<Table\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"roughness", " ", "=", " ", 
    RowBox[{"Import", "[", 
     RowBox[{
-    "\"\</Users/ericrussell/Documents/figure_in_processing_computer_and_\
-geosciences/cluster_roughness.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{"basePath", "<>", "baseName", "<>", "\"\<_roughness.txt\>\""}], 
+     ",", " ", "\"\<Table\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"area", " ", "=", " ", 
    RowBox[{"Import", "[", 
     RowBox[{
-    "\"\</Users/ericrussell/Documents/figure_in_processing_computer_and_\
-geosciences/cluster_area.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+     RowBox[{"basePath", "<>", "baseName", "<>", "\"\<_area.txt\>\""}], ",", 
+     " ", "\"\<Table\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"poles", " ", "=", " ", 
    RowBox[{"Map", "[", 
@@ -199,50 +204,67 @@ geosciences/cluster_area.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
   RowBox[{"roughnessRO", "=", "True"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"If", "[", 
   RowBox[{"roughnessRO", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"Show", "[", 
+   RowBox[{"Export", "[", 
     RowBox[{
-     RowBox[{"ListEqualAreaContourPlot", "[", 
-      RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
-       RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
-       RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"ListEqualAreaPointColorPlot", "[", 
-      RowBox[{"polesRN", ",", "roughnessN", ",", " ", "0.017"}], "]"}]}], 
-    "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-   RowBox[{"Show", "[", 
+     RowBox[{
+     "basePath", "<>", "baseName", "<>", "\"\<_contour_roughness.pdf\>\""}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"Legended", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Show", "[", 
+        RowBox[{
+         RowBox[{"ListEqualAreaContourPlot", "[", 
+          RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
+           RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
+           RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ListEqualAreaPointColorPlot", "[", 
+          RowBox[{"polesRN", ",", "roughnessN", ",", " ", "0.017"}], "]"}], 
+         ",", 
+         RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"BarLegend", "[", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Rainbow\>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Min", "[", 
+             RowBox[{"Flatten", "[", "roughnessN", "]"}], "]"}], ",", 
+            RowBox[{"Max", "[", 
+             RowBox[{"Flatten", "[", "roughnessN", "]"}], "]"}]}], "}"}]}], 
+         "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Export", "[", 
     RowBox[{
-     RowBox[{"ListEqualAreaContourPlot", "[", 
-      RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
-       RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
-       RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"ListEqualAreaPointColorPlot", "[", 
-      RowBox[{"poles", ",", "roughness", ",", " ", "0.017"}], "]"}]}], 
-    "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "]"}], "\[IndentingNewLine]", 
- RowBox[{"If", "[", 
-  RowBox[{"roughnessRO", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"BarLegend", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Rainbow\>\"", ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Min", "[", 
-         RowBox[{"Flatten", "[", "roughnessN", "]"}], "]"}], ",", 
-        RowBox[{"Max", "[", 
-         RowBox[{"Flatten", "[", "roughnessN", "]"}], "]"}]}], "}"}]}], "}"}],
-     "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-   RowBox[{"BarLegend", "[", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Rainbow\>\"", ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"Min", "[", 
-         RowBox[{"Flatten", "[", "roughness", "]"}], "]"}], ",", 
-        RowBox[{"Max", "[", 
-         RowBox[{"Flatten", "[", "roughness", "]"}], "]"}]}], "}"}]}], "}"}], 
-    "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "]"}], "\[IndentingNewLine]", 
+     RowBox[{
+     "basePath", "<>", "baseName", "<>", "\"\<_contour_roughness.pdf\>\""}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"Legended", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Show", "[", 
+        RowBox[{
+         RowBox[{"ListEqualAreaContourPlot", "[", 
+          RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
+           RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
+           RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"ListEqualAreaPointColorPlot", "[", 
+          RowBox[{"poles", ",", "roughness", ",", " ", "0.017"}], "]"}], ",", 
+         RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"BarLegend", "[", 
+        RowBox[{"{", 
+         RowBox[{"\"\<Rainbow\>\"", ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"Min", "[", 
+             RowBox[{"Flatten", "[", "roughness", "]"}], "]"}], ",", 
+            RowBox[{"Max", "[", 
+             RowBox[{"Flatten", "[", "roughness", "]"}], "]"}]}], "}"}]}], 
+         "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"areaBina", "=", "False"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -272,50 +294,66 @@ geosciences/cluster_area.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"areaRO", "=", "True"}], ";"}], "\[IndentingNewLine]", 
- RowBox[{"If", "[", 
-  RowBox[{"areaRO", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"Show", "[", 
-    RowBox[{
-     RowBox[{"ListEqualAreaContourPlot", "[", 
-      RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
-       RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
-       RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"ListEqualAreaPointColorPlot", "[", 
-      RowBox[{"polesAN", ",", "areaN", ",", " ", "0.017"}], "]"}]}], "]"}], 
-   "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-   RowBox[{"Show", "[", 
-    RowBox[{
-     RowBox[{"ListEqualAreaContourPlot", "[", 
-      RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
-       RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
-       RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
-     "\[IndentingNewLine]", 
-     RowBox[{"ListEqualAreaPointColorPlot", "[", 
-      RowBox[{"poles", ",", "area", ",", " ", "0.017"}], "]"}]}], "]"}]}], 
-  "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"If", "[", 
    RowBox[{"areaRO", ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-    RowBox[{"BarLegend", "[", 
-     RowBox[{"{", 
-      RowBox[{"\"\<Rainbow\>\"", ",", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"Min", "[", 
-          RowBox[{"Flatten", "[", "areaN", "]"}], "]"}], ",", 
-         RowBox[{"Max", "[", 
-          RowBox[{"Flatten", "[", "areaN", "]"}], "]"}]}], "}"}]}], "}"}], 
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{
+      "basePath", "<>", "baseName", "<>", "\"\<_contour_area.pdf\>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Legended", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"ListEqualAreaContourPlot", "[", 
+           RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
+            RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
+            RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ListEqualAreaPointColorPlot", "[", 
+           RowBox[{"polesAN", ",", "areaN", ",", " ", "0.017"}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"BarLegend", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Rainbow\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Min", "[", 
+              RowBox[{"Flatten", "[", "areaN", "]"}], "]"}], ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"Flatten", "[", "areaN", "]"}], "]"}]}], "}"}]}], "}"}],
+          "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
      "]"}], "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-    RowBox[{"BarLegend", "[", 
-     RowBox[{"{", 
-      RowBox[{"\"\<Rainbow\>\"", ",", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"Min", "[", 
-          RowBox[{"Flatten", "[", "area", "]"}], "]"}], ",", 
-         RowBox[{"Max", "[", 
-          RowBox[{"Flatten", "[", "area", "]"}], "]"}]}], "}"}]}], "}"}], 
+    RowBox[{"Export", "[", 
+     RowBox[{
+      RowBox[{
+      "basePath", "<>", "baseName", "<>", "\"\<_contour_area.pdf\>\""}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Legended", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Show", "[", 
+         RowBox[{
+          RowBox[{"ListEqualAreaContourPlot", "[", 
+           RowBox[{"poles", ",", "  ", "0.005", ",", "0.0042", ",", " ", 
+            RowBox[{"InterpolationOrder", "\[Rule]", "3"}], ",", " ", 
+            RowBox[{"ContourShading", "\[Rule]", "False"}]}], "]"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"ListEqualAreaPointColorPlot", "[", 
+           RowBox[{"poles", ",", "area", ",", " ", "0.017"}], "]"}], ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"BarLegend", "[", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Rainbow\>\"", ",", 
+           RowBox[{"{", 
+            RowBox[{
+             RowBox[{"Min", "[", 
+              RowBox[{"Flatten", "[", "area", "]"}], "]"}], ",", 
+             RowBox[{"Max", "[", 
+              RowBox[{"Flatten", "[", "area", "]"}], "]"}]}], "}"}]}], "}"}], 
+         "]"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
      "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], 
   "\[IndentingNewLine]", 
   RowBox[{"(*", 
@@ -426,7 +464,7 @@ geosciences/cluster_area.txt\>\"", ",", " ", "\"\<Table\>\""}], "]"}]}],
    3.693611130096663*^9}, {3.693611210028878*^9, 3.69361151885891*^9}, {
    3.693611564586153*^9, 3.6936116428548393`*^9}, {3.6936116748354607`*^9, 
    3.693611713693818*^9}, {3.6936133844853487`*^9, 3.693613385580113*^9}, {
-   3.693614490913035*^9, 3.6936145501828003`*^9}}]
+   3.693614490913035*^9, 3.6936145501828003`*^9}, 3.693648159260646*^9}]
 },
 WindowSize->{1185, 673},
 WindowMargins->{{Automatic, 0}, {Automatic, 0}},
@@ -446,7 +484,7 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[557, 20, 18548, 408, 1287, "Input"]
+Cell[557, 20, 20180, 446, 1406, "Input"]
 }
 ]
 *)
